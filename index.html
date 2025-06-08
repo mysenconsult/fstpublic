@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acorns School: Trauma-Informed Approaches</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .presentation-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .slide {
+            background: white;
+            margin: 40px 0;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideIn 0.8s forwards;
+            display: none;
+        }
+
+        .slide.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .slide-header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .slide-header.trauma {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+        }
+
+        .slide-header.attachment {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+        }
+
+        .slide-header.brain {
+            background: linear-gradient(135deg, #e67e22, #d35400);
+        }
+
+        .slide-header.recovery {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+
+        .slide-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><polygon fill="rgba(255,255,255,0.1)" points="0,0 100,0 80,100 0,100"/></svg>');
+            background-size: 200px 100%;
+        }
+
+        .slide-header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide-header h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide-header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .slide-content {
+            padding: 40px;
+        }
+
+        .focus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .focus-card {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            border-left: 5px solid #e74c3c;
+            transition: transform 0.3s ease;
+        }
+
+        .focus-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .focus-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            color: #e74c3c;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .scenario-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 15px;
+            border-top: 4px solid #27ae60;
+        }
+
+        .scenario-card.negative {
+            border-top-color: #e74c3c;
+        }
+
+        .scenario-card h3 {
+            color: #27ae60;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .scenario-card.negative h3 {
+            color: #e74c3c;
+        }
+
+        .trauma-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .trauma-type {
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .trauma-type:hover {
+            transform: scale(1.05);
+        }
+
+        .brain-states {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .brain-state {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .brain-state:hover {
+            border-color: #e67e22;
+            box-shadow: 0 10px 25px rgba(230, 126, 34, 0.2);
+        }
+
+        .brain-state-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .brain-state-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: white;
+            margin-right: 15px;
+        }
+
+        .fight { background: #e74c3c; }
+        .flight { background: #f39c12; }
+        .freeze { background: #3498db; }
+        .hyperarousal { background: #e67e22; }
+        .dissociation { background: #9b59b6; }
+
+        .impact-section {
+            background: #f8f9fa;
+            border-left: 5px solid #e74c3c;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .impact-section h3 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+
+        .key-points {
+            background: linear-gradient(135deg, #E3F2FD, #BBDEFB);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .key-points h3 {
+            color: #1976D2;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-points li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .key-points li::before {
+            content: '💡';
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        .recovery-points {
+            background: linear-gradient(135deg, #d5f4e6, #a8e6cf);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .recovery-points h3 {
+            color: #27ae60;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .recovery-points ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .recovery-points li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .recovery-points li::before {
+            content: '🌱';
+            position: absolute;
+            left: 0;
+            font-size: 1.2em;
+        }
+
+        .warning-box {
+            background: linear-gradient(135deg, #ffe6e6, #ffcccc);
+            border: 2px solid #e74c3c;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .warning-box h3 {
+            color: #c0392b;
+            margin-bottom: 15px;
+        }
+
+        .action-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .action-step {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .action-step:hover {
+            transform: translateY(-5px);
+        }
+
+        .statistics {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            min-width: 150px;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+
+        .quote-box {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-left: 5px solid #3498db;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 0 15px 15px 0;
+            font-style: italic;
+            font-size: 1.1em;
+            color: #2c3e50;
+        }
+
+        .slide-number {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        /* Navigation Styles */
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 15px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+        }
+
+        .nav-btn:hover {
+            background: #c0392b;
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(192, 57, 43, 0.5);
+        }
+
+        .nav-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: scale(1);
+            box-shadow: none;
+        }
+
+        .nav-btn:disabled:hover {
+            background: #ccc;
+            transform: scale(1);
+        }
+
+        .slide-counter {
+            background: #f8f9fa;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            color: #333;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .slide-dots {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #e74c3c;
+            transform: scale(1.3);
+        }
+
+        .dot:hover {
+            background: #e74c3c;
+            opacity: 0.7;
+        }
+
+        /* Progress bar */
+        .progress-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+            z-index: 1001;
+        }
+
+        .progress-bar-nav {
+            height: 100%;
+            background: linear-gradient(90deg, #e74c3c, #c0392b);
+            transition: width 0.3s ease;
+            width: 0%;
+        }
+
+        /* Keyboard shortcuts hint */
+        .shortcuts-hint {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.9em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1000;
+        }
+
+        .shortcuts-hint.show {
+            opacity: 1;
+        }
+
+        /* Full screen mode */
+        .fullscreen-btn {
+            position: fixed;
+            top: 20px;
+            right: 80px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .fullscreen-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .emoji {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .slide-header h1 {
+                font-size: 2em;
+            }
+            
+            .slide-content {
+                padding: 20px;
+            }
+
+            .statistics {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="progress-bar-nav" id="progressBar"></div>
+        </div>
+
+        <!-- Keyboard Shortcuts Hint -->
+        <div class="shortcuts-hint" id="shortcutsHint">
+            Press 'H' for help • Space/Arrow keys to navigate • 'F' for fullscreen
+        </div>
+
+        <!-- Fullscreen Button -->
+        <button class="fullscreen-btn" id="fullscreenBtn" title="Toggle Fullscreen (F)">⛶</button>
+        
+        <!-- Title Slide -->
+        <div class="slide active">
+            <div class="slide-header">
+                <div class="slide-number">1</div>
+                <h1>🧠 TRAUMA-INFORMED APPROACHES</h1>
+                <p>Understanding and Supporting Pupils with Trauma and Attachment Difficulties</p>
+            </div>
+        </div>
+
+        <!-- Why This Matters -->
+        <div class="slide">
+            <div class="slide-header trauma">
+                <div class="slide-number">2</div>
+                <h2>💗 Why This Matters</h2>
+            </div>
+            <div class="slide-content">
+                <div class="focus-grid">
+                    <div class="focus-card">
+                        <div class="focus-icon">🔑</div>
+                        <h3>Key Intervention</h3>
+                        <p>Understanding trauma develops compassion, patience and empathy</p>
+                    </div>
+                    <div class="focus-card">
+                        <div class="focus-icon">💝</div>
+                        <h3>What We Offer</h3>
+                        <p>Compassion is what traumatised pupils need most</p>
+                    </div>
+                    <div class="focus-card">
+                        <div class="focus-icon">🌱</div>
+                        <h3>Healing Context</h3>
+                        <p>Recovery occurs best in healing relationships</p>
+                    </div>
+                </div>
+                
+                <div class="quote-box">
+                    <strong>"Many of our learners have experienced trauma and attachment difficulties. Recovery from trauma will occur best in the context of healing relationships."</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Attachment Foundation -->
+        <div class="slide">
+            <div class="slide-header attachment">
+                <div class="slide-number">3</div>
+                <h2>👶 Early Security: Building Resilience</h2>
+            </div>
+            <div class="slide-content">
+                <div class="key-points">
+                    <h3>The Foundation of Healthy Development</h3>
+                    <ul>
+                        <li>Early care-giving relationship teaches children to know love</li>
+                        <li>Attuned interactions develop brain pathways for social understanding</li>
+                        <li>Secure attachment creates internal sense of being "worth loving"</li>
+                        <li>Caregiver helps child understand their emotions and physical states</li>
+                        <li>Resilience is built through repeated cycles of stress → comfort → security</li>
+                    </ul>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="scenario-card">
+                        <h3>✅ Secure Response</h3>
+                        <p><strong>Child frightened by dog:</strong></p>
+                        <ul>
+                            <li>Caregiver rushes out to help</li>
+                            <li>Picks up child, holds them tight</li>
+                            <li>Speaks in calm, soothing voice</li>
+                            <li>Stays until child is calm again</li>
+                        </ul>
+                        <p><em>Result: Child learns the world can be safe</em></p>
+                    </div>
+                    
+                    <div class="scenario-card negative">
+                        <h3>⚠️ Insecure Response</h3>
+                        <p><strong>Same situation:</strong></p>
+                        <ul>
+                            <li>Caregiver grabs child by arm</li>
+                            <li>Smacks and drags inside</li>
+                            <li>Shouts and blames child</li>
+                            <li>No comfort or soothing</li>
+                        </ul>
+                        <p><em>Result: Child learns the world is threatening</em></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- What is Trauma -->
+        <div class="slide">
+            <div class="slide-header trauma">
+                <div class="slide-number">4</div>
+                <h2>⚡ Understanding Trauma</h2>
+            </div>
+            <div class="slide-content">
+                <div class="impact-section">
+                    <h3>Definition of Trauma</h3>
+                    <p>Trauma occurs when an event is so frightening it causes a prolonged alarm reaction, where the body is primed with chemicals like adrenaline and does not calm down for a long time.</p>
+                </div>
+
+                <div class="trauma-types">
+                    <div class="trauma-type">Chronic Abuse</div>
+                    <div class="trauma-type">Neglect</div>
+                    <div class="trauma-type">Attachment Disruption</div>
+                    <div class="trauma-type">Loss & Separation</div>
+                    <div class="trauma-type">Witnessing Violence</div>
+                    <div class="trauma-type">Medical Trauma</div>
+                </div>
+
+                <div class="warning-box">
+                    <h3>⚠️ Critical Difference: Children vs Adults</h3>
+                    <ul>
+                        <li><strong>Adults:</strong> Trauma alters their mature, organised brain</li>
+                        <li><strong>Children:</strong> Trauma becomes the primary organising experience, creating the foundation for neurological development</li>
+                        <li><strong>Impact:</strong> For children, trauma has a detrimental impact on the developing brain itself</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Brain and Body Impact -->
+        <div class="slide">
+            <div class="slide-header brain">
+                <div class="slide-number">5</div>
+                <h2>🧠 Impact on Brain and Body</h2>
+            </div>
+            <div class="slide-content">
+                <div class="brain-states">
+                    <div class="brain-state">
+                        <div class="brain-state-header">
+                            <div class="brain-state-icon fight">⚔️</div>
+                            <div>
+                                <h3>Fight Response</h3>
+                                <p><em>Aggressive, confrontational</em></p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Increased adrenaline for strength</li>
+                            <li>Ready to defend or attack</li>
+                            <li>May appear defiant or hostile</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="brain-state">
+                        <div class="brain-state-header">
+                            <div class="brain-state-icon flight">🏃</div>
+                            <div>
+                                <h3>Flight Response</h3>
+                                <p><em>Avoidant, escaping</em></p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Body prepared for quick escape</li>
+                            <li>May seem restless, fidgety</li>
+                            <li>Avoids challenging situations</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="brain-state">
+                        <div class="brain-state-header">
+                            <div class="brain-state-icon freeze">🧊</div>
+                            <div>
+                                <h3>Freeze Response</h3>
+                                <p><em>Shutdown, disconnected</em></p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Endorphins released for numbness</li>
+                            <li>Breathing slows down</li>
+                            <li>May appear compliant but inattentive</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <h3>When Trauma Becomes Chronic</h3>
+                    <ul>
+                        <li>Chemical reactions stay "switched on" as if never switched off</li>
+                        <li>Normal threat responses become permanent states</li>
+                        <li>Leads to affect dysregulation - inability to manage emotions</li>
+                        <li>Results in problems with anger, impulses, attention, and connection</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Affect Dysregulation -->
+        <div class="slide">
+            <div class="slide-header trauma">
+                <div class="slide-number">6</div>
+                <h2>⚡ Affect Dysregulation</h2>
+            </div>
+            <div class="slide-content">
+                <div class="impact-section">
+                    <h3>What is Affect Dysregulation?</h3>
+                    <p>The inability to regulate emotions and reactions. This capacity is normally built during early years through attuned attachment relationships with well-regulated caregivers.</p>
+                </div>
+
+                <div class="brain-states">
+                    <div class="brain-state">
+                        <div class="brain-state-header">
+                            <div class="brain-state-icon hyperarousal">🔥</div>
+                            <div>
+                                <h3>Hyperarousal</h3>
+                                <p><em>Reactive, hypervigilant</em></p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Constantly on high alert</li>
+                            <li>Prone to aggression or flight</li>
+                            <li>Alarmed by minor triggers</li>
+                            <li>Intensely painful and uncomfortable</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="brain-state">
+                        <div class="brain-state-header">
+                            <div class="brain-state-icon dissociation">🌫️</div>
+                            <div>
+                                <h3>Dissociation</h3>
+                                <p><em>Numb, disconnected</em></p>
+                            </div>
+                        </div>
+                        <ul>
+                            <li>Feeling "switched off" or numb</li>
+                            <li>Compliant but inattentive</li>
+                            <li>Difficulty connecting with others</li>
+                            <li>Also intensely painful</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="warning-box">
+                    <h3>The Result: Straight to Reaction</h3>
+                    <p>Traumatised children have reduced capacity to regulate strong emotions, leading them straight to reaction with <strong>no time to think</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Trauma Manifestations -->
+        <div class="slide">
+            <div class="slide-header trauma">
+                <div class="slide-number">7</div>
+                <h2>🔄 How Trauma Shows Up</h2>
+            </div>
+            <div class="slide-content">
+                <div class="key-points">
+                    <h3>Traumatised children tend to re-enact and replicate their trauma through:</h3>
+                    <ul>
+                        <li>Fearful reactions to everyday situations</li>
+                        <li>Aggressive and sexual acting-out behaviours</li>
+                        <li>Avoidance of new experiences or relationships</li>
+                        <li>Uncontrolled emotional reactions</li>
+                        <li>Viewing adults as potential threats or perpetrators</li>
+                        <li>Experiencing rules and protection as punishment</li>
+                    </ul>
+                </div>
+
+                <div class="impact-section">
+                    <h3>Self-Harm and Addictive Behaviours</h3>
+                    <p><strong>Why traumatised children may self-harm:</strong></p>
+                    <ul>
+                        <li><strong>Endorphin seeking:</strong> Addicted to stress chemicals</li>
+                        <li><strong>Self-hatred:</strong> Acting out negative self-image</li>
+                        <li><strong>Depression:</strong> Wish to end emotional pain</li>
+                        <li><strong>Feeling something:</strong> Overcoming numbness</li>
+                        <li><strong>Self-medication:</strong> Attempting to regulate their physiology</li>
+                        <li><strong>High-risk behaviours:</strong> Seeking stimulation and control</li>
+                    </ul>
+                </div>
+
+                <div class="trauma-types">
+                    <div class="trauma-type">Substance Use</div>
+                    <div class="trauma-type">High-Risk Activities</div>
+                    <div class="trauma-type">Criminal Behaviour</div>
+                    <div class="trauma-type">Self-Harm</div>
+                    <div class="trauma-type">Sleep/Appetite Issues</div>
+                    <div class="trauma-type">Relationship Difficulties</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recovery Principles -->
+        <div class="slide">
+            <div class="slide-header recovery">
+                <div class="slide-number">8</div>
+                <h2>🌱 Intervention and Recovery</h2>
+            </div>
+            <div class="slide-content">
+                <div class="statistics">
+                    <div class="stat-item">
+                        <div class="stat-number">1st</div>
+                        <p>Best recovery if intervention in first year of life</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">Earlier</div>
+                        <p>The earlier intervention, the greater chance of recovery</p>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">Hope</div>
+                        <p>Caring adults provide different template of possibilities</p>
+                    </div>
+                </div>
+
+                <div class="recovery-points">
+                    <h3>Essential Conditions for Recovery</h3>
+                    <ul>
+                        <li><strong>Safety First:</strong> No recovery unless child feels safe and secure</li>
+                        <li><strong>Acknowledged Pain:</strong> Adults must acknowledge the hurt they've suffered</li>
+                        <li><strong>Appropriate Nurture:</strong> Containing difficult behaviours with compassion</li>
+                        <li><strong>Held in Mind:</strong> Someone who cares, thinks about them, knows how they're feeling</li>
+                        <li><strong>Healing Relationships:</strong> Positive view from trusted, caring adults</li>
+                        <li><strong>Trauma Must Stop:</strong> No hope if trauma is still occurring</li>
+                    </ul>
+                </div>
+
+                <div class="quote-box">
+                    <strong>"To be happy, we all need to know that there is someone who cares about us and thinks about us, thinks about what we are doing, and how we are feeling. This is the basis of security."</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- Our Compassionate Approach -->
+        <div class="slide">
+            <div class="slide-header recovery">
+                <div class="slide-number">9</div>
+                <h2>💝 Our Compassionate Response</h2>
+            </div>
+            <div class="slide-content">
+                <div class="action-steps">
+                    <div class="action-step">
+                        <span class="emoji">👁️</span>
+                        <h3>See Beyond Behaviour</h3>
+                        <p>Understand the trauma driving actions</p>
+                    </div>
+                    <div class="action-step">
+                        <span class="emoji">🛡️</span>
+                        <h3>Provide Safety</h3>
+                        <p>Create predictable, secure environment</p>
+                    </div>
+                    <div class="action-step">
+                        <span class="emoji">💭</span>
+                        <h3>Hold Them in Mind</h3>
+                        <p>Show you think about and care for them</p>
+                    </div>
+                    <div class="action-step">
+                        <span class="emoji">🤝</span>
+                        <h3>Build Relationships</h3>
+                        <p>Become the caring adult who makes a difference</p>
+                    </div>
+                    <div class="action-step">
+                        <span class="emoji">🌱</span>
+                        <h3>Support Regulation</h3>
+                        <p>Help them learn to manage emotions</p>
+                    </div>
+                    <div class="action-step">
+                        <span class="emoji">⏰</span>
+                        <h3>Be Patient</h3>
+                        <p>Recovery takes time and consistency</p>
+                    </div>
+                </div>
+
+                <div class="key-points">
+                    <h3>Remember: We Are the Healing Relationship</h3>
+                    <ul>
+                        <li>For many pupils, we may be their first experience of consistent, caring adults</li>
+                        <li>Our patience, understanding, and compassion can literally rewire their brains</li>
+                        <li>Every positive interaction builds resilience and hope</li>
+                        <li>We're not just teaching subjects - we're healing trauma</li>
+                        <li>This is why trauma-informed practice is so crucial to our mission</li>
+                    </ul>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <h2 style="color: #27ae60; margin-bottom: 20px;">🌟 Every Child Can Heal and Grow</h2>
+                    <p style="font-size: 1.2em; font-style: italic; color: #666;">
+                        "Recovery from trauma will occur best in the context of healing relationships. We are that healing relationship."
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn" title="Previous slide (←)">‹</button>
+            
+            <div class="slide-dots" id="slideDots">
+                <!-- Dots will be generated by JavaScript -->
+            </div>
+            
+            <div class="slide-counter">
+                <span id="currentSlide">1</span> / <span id="totalSlides">9</span>
+            </div>
+            
+            <button class="nav-btn" id="nextBtn" title="Next slide (→)">›</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Slideshow functionality
+        class SlideShow {
+            constructor() {
+                this.slides = document.querySelectorAll('.slide');
+                this.currentSlide = 0;
+                this.totalSlides = this.slides.length;
+                
+                this.prevBtn = document.getElementById('prevBtn');
+                this.nextBtn = document.getElementById('nextBtn');
+                this.currentSlideSpan = document.getElementById('currentSlide');
+                this.totalSlidesSpan = document.getElementById('totalSlides');
+                this.progressBar = document.getElementById('progressBar');
+                this.slideDots = document.getElementById('slideDots');
+                this.shortcutsHint = document.getElementById('shortcutsHint');
+                this.fullscreenBtn = document.getElementById('fullscreenBtn');
+                
+                this.init();
+            }
+            
+            init() {
+                // Set total slides
+                this.totalSlidesSpan.textContent = this.totalSlides;
+                
+                // Create dots
+                this.createDots();
+                
+                // Show first slide
+                this.showSlide(0);
+                
+                // Add event listeners
+                this.addEventListeners();
+                
+                // Show shortcuts hint briefly
+                this.showShortcutsHint();
+            }
+            
+            createDots() {
+                for (let i = 0; i < this.totalSlides; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = 'dot';
+                    dot.addEventListener('click', () => this.goToSlide(i));
+                    this.slideDots.appendChild(dot);
+                }
+            }
+            
+            showSlide(index) {
+                // Hide all slides
+                this.slides.forEach(slide => {
+                    slide.classList.remove('active');
+                });
+                
+                // Show current slide
+                this.slides[index].classList.add('active');
+                
+                // Update counter
+                this.currentSlideSpan.textContent = index + 1;
+                
+                // Update progress bar
+                const progress = ((index + 1) / this.totalSlides) * 100;
+                this.progressBar.style.width = progress + '%';
+                
+                // Update dots
+                const dots = this.slideDots.querySelectorAll('.dot');
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+                
+                // Update button states
+                this.prevBtn.disabled = index === 0;
+                this.nextBtn.disabled = index === this.totalSlides - 1;
+            }
+            
+            nextSlide() {
+                if (this.currentSlide < this.totalSlides - 1) {
+                    this.currentSlide++;
+                    this.showSlide(this.currentSlide);
+                }
+            }
+            
+            prevSlide() {
+                if (this.currentSlide > 0) {
+                    this.currentSlide--;
+                    this.showSlide(this.currentSlide);
+                }
+            }
+            
+            goToSlide(index) {
+                this.currentSlide = index;
+                this.showSlide(index);
+            }
+            
+            addEventListeners() {
+                // Button clicks
+                this.nextBtn.addEventListener('click', () => this.nextSlide());
+                this.prevBtn.addEventListener('click', () => this.prevSlide());
+                
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    switch(e.key) {
+                        case 'ArrowRight':
+                        case ' ':
+                            e.preventDefault();
+                            this.nextSlide();
+                            break;
+                        case 'ArrowLeft':
+                            e.preventDefault();
+                            this.prevSlide();
+                            break;
+                        case 'Home':
+                            e.preventDefault();
+                            this.goToSlide(0);
+                            break;
+                        case 'End':
+                            e.preventDefault();
+                            this.goToSlide(this.totalSlides - 1);
+                            break;
+                        case 'h':
+                        case 'H':
+                            this.toggleShortcutsHint();
+                            break;
+                        case 'f':
+                        case 'F':
+                            this.toggleFullscreen();
+                            break;
+                        case 'Escape':
+                            if (document.fullscreenElement) {
+                                document.exitFullscreen();
+                            }
+                            break;
+                    }
+                });
+                
+                // Fullscreen button
+                this.fullscreenBtn.addEventListener('click', () => this.toggleFullscreen());
+                
+                // Mouse wheel navigation
+                let wheelTimeout;
+                document.addEventListener('wheel', (e) => {
+                    clearTimeout(wheelTimeout);
+                    wheelTimeout = setTimeout(() => {
+                        if (e.deltaY > 0) {
+                            this.nextSlide();
+                        } else if (e.deltaY < 0) {
+                            this.prevSlide();
+                        }
+                    }, 150);
+                });
+                
+                // Touch/swipe support
+                let touchStartX = 0;
+                let touchEndX = 0;
+                
+                document.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                });
+                
+                document.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    this.handleSwipe();
+                });
+            }
+            
+            handleSwipe() {
+                const swipeThreshold = 100;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        this.nextSlide(); // Swipe left - next slide
+                    } else {
+                        this.prevSlide(); // Swipe right - previous slide
+                    }
+                }
+            }
+            
+            showShortcutsHint() {
+                this.shortcutsHint.classList.add('show');
+                setTimeout(() => {
+                    this.shortcutsHint.classList.remove('show');
+                }, 3000);
+            }
+            
+            toggleShortcutsHint() {
+                this.shortcutsHint.classList.toggle('show');
+            }
+            
+            toggleFullscreen() {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen();
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        // Initialize slideshow when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            new SlideShow();
+            
+            // Add hover effects to cards
+            const cards = document.querySelectorAll('.focus-card, .brain-state, .action-step');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
